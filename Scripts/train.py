@@ -5,13 +5,17 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import joblib  # Added for saving the model
 
-# Load dataset
-csv_path = os.path.abspath(r'data/iris.csv')
-print(f"Expected Path for iris.csv: {csv_path}")
+# Relative path to 'iris.csv' in the data folder
+csv_path = 'data/iris.csv'
+
+# Print out the current directory to help with debugging
+print(f"Current Working Directory: {os.getcwd()}")
+print(f"Expected Path for iris.csv: {os.path.join(os.getcwd(), csv_path)}")
 
 if not os.path.exists(csv_path):
     raise FileNotFoundError(f"Error: The file '{csv_path}' was not found. Check the file path.")
 
+# Load dataset
 data = pd.read_csv(csv_path)
 X = data.drop('species', axis=1)
 y = data['species']
