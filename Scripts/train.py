@@ -5,18 +5,12 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import joblib  # Added for saving the model
 
-# Get the absolute path of the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(script_dir, "../data/iris.csv")  # Adjusted to work in GitHub Actions
-
-# Debugging: Print expected file path
-print("Current Working Directory:", os.getcwd())
-print("Expected Path for iris.csv:", csv_path)
-
 # Load dataset
+csv_path = os.path.abspath('data/iris.csv')
+print(f"Expected Path for iris.csv: {csv_path}")
+
 if not os.path.exists(csv_path):
-    print(f"Error: The file '{csv_path}' was not found. Check the file path.")
-    exit(1)  # Exit the script if file is missing
+    raise FileNotFoundError(f"Error: The file '{csv_path}' was not found. Check the file path.")
 
 data = pd.read_csv(csv_path)
 X = data.drop('species', axis=1)
@@ -32,9 +26,9 @@ model.fit(X_train, y_train)
 # Validation
 y_pred = model.predict(X_val)
 accuracy = accuracy_score(y_val, y_pred)
-model_filename = os.path.join(script_dir, "../saved_model.pkl")
+model_filename = 'saved_model.pkl'
 
-# Save the model
+# Save the model directly to the current directory
 joblib.dump(model, model_filename)
 
 print(f"Training complete. Accuracy: {accuracy}")
