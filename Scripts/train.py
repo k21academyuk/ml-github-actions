@@ -7,9 +7,9 @@ import joblib  # Added for saving the model
 
 # Get the absolute path of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(script_dir, "../data/iris.csv")  # Adjust path
+csv_path = os.path.join(script_dir, "../data/iris.csv")  # Corrected path
 
-# Debugging: Print the current working directory and expected CSV path
+# Debugging: Print the expected CSV path
 print("Current Working Directory:", os.getcwd())
 print("Expected Path for iris.csv:", csv_path)
 
@@ -40,3 +40,4 @@ model_filename = os.path.join(script_dir, "../saved_model.pkl")  # Save outside 
 joblib.dump(model, model_filename)
 
 print(f"Training complete. Accuracy: {accuracy}")
+print(f"Model saved as {model_filename}")
