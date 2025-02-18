@@ -7,20 +7,18 @@ import joblib  # Added for saving the model
 
 # Get the absolute path of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(script_dir, "../data/iris.csv")  # Corrected path
+csv_path = os.path.join(script_dir, "../data/iris.csv")  # Adjusted to work in GitHub Actions
 
-# Debugging: Print the expected CSV path
+# Debugging: Print expected file path
 print("Current Working Directory:", os.getcwd())
 print("Expected Path for iris.csv:", csv_path)
 
 # Load dataset
-try:
-    data = pd.read_csv(csv_path)
-except FileNotFoundError:
-    print("Error: The file 'iris.csv' was not found. Check the file path.")
-    exit(1)  # Exit script if the file is missing
+if not os.path.exists(csv_path):
+    print(f"Error: The file '{csv_path}' was not found. Check the file path.")
+    exit(1)  # Exit the script if file is missing
 
-# Prepare dataset
+data = pd.read_csv(csv_path)
 X = data.drop('species', axis=1)
 y = data['species']
 
@@ -34,7 +32,7 @@ model.fit(X_train, y_train)
 # Validation
 y_pred = model.predict(X_val)
 accuracy = accuracy_score(y_val, y_pred)
-model_filename = os.path.join(script_dir, "../saved_model.pkl")  # Save outside Scripts folder
+model_filename = os.path.join(script_dir, "../saved_model.pkl")
 
 # Save the model
 joblib.dump(model, model_filename)
