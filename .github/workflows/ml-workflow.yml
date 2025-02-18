@@ -30,7 +30,7 @@ jobs:
       run: |
         python Scripts/train.py
 
-    - name: Upload trained model (Optional)
+    - name: Upload trained model
       uses: actions/upload-artifact@v3
       with:
         name: trained-model
