@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import joblib  # Added for saving the model
 
 # Relative path to 'iris.csv' in the data folder
-csv_path = 'data/iris.csv'
+csv_path = 'data/IRIS.csv'
 
 # Print out the current directory to help with debugging
 print(f"Current Working Directory: {os.getcwd()}")
