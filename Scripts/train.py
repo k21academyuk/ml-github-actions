@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import joblib  # Added for saving the model
 
 # Load dataset
-csv_path = os.path.abspath('data/iris.csv')
+csv_path = os.path.abspath(r'data/iris.csv')
 print(f"Expected Path for iris.csv: {csv_path}")
 
 if not os.path.exists(csv_path):
