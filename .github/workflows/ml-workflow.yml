@@ -15,8 +15,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -29,9 +27,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Check files in the data folder
-      run: |
-        echo "Listing files in the data directory:"
-        ls -la data  # Check if iris.csv exists
+      run: ls -la data
 
     - name: Run training script
       run: |
