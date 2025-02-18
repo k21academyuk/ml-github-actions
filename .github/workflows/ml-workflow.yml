@@ -31,7 +31,7 @@ jobs:
         python Scripts/train.py
 
     - name: Upload trained model
-      uses: actions/artifact@v4
+      uses: actions/upload-artifact@v4
       with:
         name: trained-model
         path: saved_model.pkl
